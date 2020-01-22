@@ -21,6 +21,7 @@ void loop() {
   sec = map(pot, 0, 1023, 1100, 1900); 
 if (timeThis - timeLast > 1000) {
   Serial.print(pot); Serial.print('\t'); Serial.println(sec); 
-}myservo.writeMicroseconds(sec); 
+}
+myservo.writeMicroseconds(sec); 
 
 }

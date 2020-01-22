@@ -22,7 +22,7 @@ void setup() {
 void loop() {
   timeThis = millis();
   pot = analogRead(3);
-  sec = map(pot, 0, 1023, 600, 2200); 
+  sec = map(pot, 0, 1023, 1100, 1900); 
 if (timeThis - timeLast > 1000) {
   Serial.print(pot); Serial.print('\t'); Serial.println(sec); 
 }

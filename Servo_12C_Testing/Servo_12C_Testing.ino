@@ -12,19 +12,19 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver(0x40, Wire);
 uint8_t servonum = 0;
 
 void setup() {
-  Serial.begin(9600);
-  Serial.println("8 channel Servo test!");
+  Serial.begin(9600);q
+  Serial.println("Let's get iiiit! ~ ");
 
-  pwm.begin();
+  pwm.begin(); // p sure this is very much necessary.
   pwm.setOscillatorFrequency(27000000);  // The int.osc. is closer to 27MHz
-  pwm.setPWMFreq(SERVO_FREQ);
+  pwm.setPWMFreq(SERVO_FREQ); // I wonder if this is completely necessary for this to run, prb keep in juts to make sure. 
 
-pwm.writeMicroseconds(0, 1500); 
+pwm.writeMicroseconds(0, 1500);
    delay(3000);
 }
 
 void loop() {
-  pwm.writeMicroseconds(0, 1900); 
+  pwm.writeMicroseconds(0, 1900); // should mimic the myservo writeMicroseconds behavior, not sure why it isn't acting the same way with the actual motor. ?
   delay(3000); 
   pwm.writeMicroseconds(0 ,1100); 
   delay(3000); 
