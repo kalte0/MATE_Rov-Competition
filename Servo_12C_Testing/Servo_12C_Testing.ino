@@ -9,10 +9,9 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver(0x40, Wire);
 #define USMAX  1800 // This is the rounded 'maximum' microsecond length based on the maximum pulse of 600
 #define SERVO_FREQ 60 // Analog servos run at ~60 Hz updates
 
-uint8_t servonum = 0;
 
 void setup() {
-  Serial.begin(9600);q
+  Serial.begin(9600);
   Serial.println("Let's get iiiit! ~ ");
 
   pwm.begin(); // p sure this is very much necessary.
@@ -20,11 +19,11 @@ void setup() {
   pwm.setPWMFreq(SERVO_FREQ); // I wonder if this is completely necessary for this to run, prb keep in juts to make sure. 
 
 pwm.writeMicroseconds(0, 1500);
-   delay(3000);
+   delay(6000);
 }
 
 void loop() {
-  pwm.writeMicroseconds(0, 1900); // should mimic the myservo writeMicroseconds behavior, not sure why it isn't acting the same way with the actual motor. ?
+  pwm.writeMicroseconds(0, 1900);
   delay(3000); 
   pwm.writeMicroseconds(0 ,1100); 
   delay(3000); 
