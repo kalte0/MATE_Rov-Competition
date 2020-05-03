@@ -1,10 +1,11 @@
 import pygame
-import asyncio
+import json
+
 
 # Define some colors.
 BLACK = pygame.Color('black')
 WHITE = pygame.Color('white')
-
+data = {} 
 
 # This is a simple class that will help us print to the screen.
 # It has nothing to do with the joysticks, just outputting the
@@ -58,12 +59,13 @@ while not done:
     # Possible joystick actions: JOYAXISMOTION, JOYBALLMOTION, JOYBUTTONDOWN,
     # JOYBUTTONUP, JOYHATMOTION
     for event in pygame.event.get(): # User did something.
+        if event.type == pygame.JOYAXISMOTION:
+            json_string = json.dumps(vars(event))
+            print("{}".format(json_string))
+        print("Event was: {}".format(event.type))
         if event.type == pygame.QUIT: # If user clicked close.
             done = True # Flag that we are done so we exit this loop.
-        elif event.type == pygame.JOYBUTTONDOWN:
-            print("Joystick button pressed.")
-        elif event.type == pygame.JOYBUTTONUP:
-            print("Joystick button released.")
+	
 
     #
     # DRAWING STEP
@@ -77,6 +79,7 @@ while not done:
     joystick_count = pygame.joystick.get_count()
 
     textPrint.tprint(screen, "Number of joysticks: {}".format(joystick_count))
+    textPrint.tprint(screen, "test"); 
     textPrint.indent()
 
     # For each joystick:
@@ -139,3 +142,5 @@ while not done:
 # If you forget this line, the program will 'hang'
 # on exit if running from IDLE.
 pygame.quit()
+
+
