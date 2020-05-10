@@ -11,8 +11,6 @@ if pygame.joystick.get_init:
     print("Joystick found, deploying diplomatic wizards to establish connection...")
 pygame.joystick.Joystick(0).init()
 
-while not done:
-    
 
 async def hello():
     uri = "ws://192.168.1.37:8765"
