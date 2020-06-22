@@ -15,8 +15,9 @@ if pygame.joystick.get_init():
 done = False; #for the loop, set to False at the beginning of the 
 
 async def hello():
-    uri = "ws://192.168.1.37:8765"
+    uri = "ws://192.168.1.22:8765"
     async with websockets.connect(uri) as websocket:
+        print("Connected")
         while True:
             joystick = pygame.joystick.Joystick(0) # We're only connecting one joystick, no need to do the scan 
             joystick.init()
@@ -29,14 +30,16 @@ async def hello():
             for event in pygame.event.get(): 
                 if event.type == pygame.JOYAXISMOTION:
                     dict = {}
-                    dict['Axis 0'] = joystick.get_axis(0)
-                    dict['Axis 1'] = joystick.get_axis(1)
-                    dict['Axis 2'] = joystick.get_axis(2)
-                    dict['Axis 3'] = joystick.get_axis(3)
+                    dict['test'] = 1
+                    dict['axis0'] = int(1000*joystick.get_axis(0)) #For just the number I want to send, testing out rounding 2 decimal places here. Add *1000 here later?
+                    print(int(1000*joystick.get_axis(0)))
+                    #dict['axis1'] = joystick.get_axis(1)
+                    #dict['axis2'] = joystick.get_axis(2)
+                    #dict['axis3'] = joystick.get_axis(3)
             json_string = json.dumps(dict)
             await websocket.send(json_string)
             greeting = await websocket.recv()
-            print(f"< {greeting}")
+            print(f"< {greeting}")   
             
             time.sleep(0.5)
                     
